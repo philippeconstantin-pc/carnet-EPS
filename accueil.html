@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPS — BTSA AP 25-27</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --orange: #E67E22; --orange-dark: #d35400; --orange-light: #FEF0E7;
+  --vert: #2ECC71; --vert-dark: #27AE60; --vert-light: #E8F5E9;
+  --bleu: #3498DB; --bleu-light: #E3F2FD;
+  --bg: #0F1117; --bg2: #181C27; --bg3: #1E2333;
+  --border: rgba(255,255,255,0.08);
+  --text: #E8EAF0; --muted: #7A8099;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+/* GRILLE DE FOND */
+.bg-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(230,126,34,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(230,126,34,0.025) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+
+.page { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+/* ── HERO ── */
+.hero { padding: 3rem 0 2.5rem; animation: fadeDown 0.8s ease both; }
+.hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--orange); text-transform: uppercase; margin-bottom: 1rem; }
+.hero-title { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.05; color: #fff; margin-bottom: 1rem; }
+.hero-title span { color: var(--orange); }
+.hero-subtitle { font-size: 1rem; color: var(--muted); max-width: 560px; line-height: 1.7; margin-bottom: 2rem; }
+.hero-badges { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.badge { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; padding: 0.35rem 0.8rem; border-radius: 20px; border: 1px solid; }
+.badge-orange { border-color: var(--orange); color: var(--orange); background: rgba(230,126,34,0.08); }
+.badge-vert { border-color: var(--vert); color: var(--vert); background: rgba(46,204,113,0.08); }
+.badge-bleu { border-color: var(--bleu); color: var(--bleu); background: rgba(52,152,219,0.08); }
+
+/* ── SECTION TITRE ── */
+.section-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase; margin-bottom: 1.2rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); margin-top: 3rem; }
+
+/* ── CARNET BANNER ── */
+.carnet-banner { background: linear-gradient(135deg, var(--bg2) 0%, #1a1f30 100%); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem 2rem; display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.2s ease both; position: relative; overflow: hidden; }
+.carnet-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--orange), var(--vert)); border-radius: 16px 16px 0 0; }
+.carnet-icon { font-size: 3rem; line-height: 1; }
+.carnet-info { flex: 1; min-width: 200px; }
+.carnet-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: #fff; margin-bottom: 0.4rem; }
+.carnet-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.btn-carnet { background: var(--orange); color: #fff; border: none; border-radius: 10px; padding: 0.8rem 1.5rem; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; cursor: pointer; text-decoration: none; display: inline-block; transition: background 0.2s, transform 0.1s; white-space: nowrap; }
+.btn-carnet:hover { background: var(--orange-dark); transform: translateY(-1px); }
+
+/* ── PROJETS ── */
+.projets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; animation: fadeUp 0.8s 0.3s ease both; }
+@media (max-width: 580px) { .projets-grid { grid-template-columns: 1fr; } }
+
+.projet-card { border-radius: 16px; padding: 1.6rem; border: 1px solid var(--border); position: relative; overflow: hidden; transition: transform 0.2s, border-color 0.2s; }
+.projet-card:hover { transform: translateY(-2px); }
+.projet-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
+.projet-muscu { background: linear-gradient(135deg, rgba(230,126,34,0.08), var(--bg2)); }
+.projet-muscu::before { background: var(--orange); }
+.projet-muscu:hover { border-color: rgba(230,126,34,0.3); }
+.projet-raid { background: linear-gradient(135deg, rgba(46,204,113,0.08), var(--bg2)); }
+.projet-raid::before { background: var(--vert); }
+.projet-raid:hover { border-color: rgba(46,204,113,0.3); }
+
+.projet-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+.projet-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.projet-muscu .projet-label { color: var(--orange); }
+.projet-raid .projet-label { color: var(--vert); }
+.projet-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: #fff; margin-bottom: 0.8rem; }
+.projet-items { list-style: none; }
+.projet-items li { font-size: 0.8rem; color: var(--muted); padding: 0.25rem 0; display: flex; align-items: center; gap: 0.5rem; }
+.projet-items li::before { content: '→'; font-size: 0.7rem; }
+.projet-muscu .projet-items li::before { color: var(--orange); }
+.projet-raid .projet-items li::before { color: var(--vert); }
+
+/* ── FORMULAIRES ── */
+.formulaires-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.7rem; animation: fadeUp 0.8s 0.4s ease both; }
+.form-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; display: flex; align-items: center; gap: 1rem; transition: border-color 0.2s, background 0.2s; }
+.form-card:hover { border-color: rgba(230,126,34,0.2); background: var(--bg3); }
+.form-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; min-width: 2rem; }
+.form-muscu .form-num { color: var(--orange); }
+.form-raid .form-num { color: var(--vert); }
+.form-info { flex: 1; }
+.form-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: #fff; margin-bottom: 0.2rem; }
+.form-when { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); }
+.form-freq { font-family: 'DM Mono', monospace; font-size: 0.6rem; padding: 0.15rem 0.5rem; border-radius: 20px; white-space: nowrap; }
+.form-muscu .form-freq { background: rgba(230,126,34,0.15); color: var(--orange); }
+.form-raid .form-freq { background: rgba(46,204,113,0.15); color: var(--vert); }
+
+/* ── AGENDA ── */
+.agenda-list { display: flex; flex-direction: column; gap: 0.5rem; animation: fadeUp 0.8s 0.5s ease both; }
+.agenda-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1.2rem; display: grid; grid-template-columns: 140px 1fr auto; align-items: center; gap: 1rem; }
+@media (max-width: 500px) { .agenda-item { grid-template-columns: 1fr; } }
+.agenda-date { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--muted); }
+.agenda-titre { font-size: 0.85rem; color: var(--text); }
+.agenda-tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; padding: 0.2rem 0.6rem; border-radius: 20px; white-space: nowrap; }
+.tag-orange { background: rgba(230,126,34,0.15); color: var(--orange); }
+.tag-vert { background: rgba(46,204,113,0.15); color: var(--vert); }
+.tag-bleu { background: rgba(52,152,219,0.15); color: var(--bleu); }
+
+/* ── ACCES RAPIDE ── */
+.acces-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; animation: fadeUp 0.8s 0.6s ease both; }
+@media (max-width: 500px) { .acces-grid { grid-template-columns: 1fr; } }
+.acces-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; text-align: center; text-decoration: none; transition: border-color 0.2s, transform 0.2s; display: block; }
+.acces-card:hover { transform: translateY(-2px); }
+.acces-card.orange:hover { border-color: rgba(230,126,34,0.4); }
+.acces-card.vert:hover { border-color: rgba(46,204,113,0.4); }
+.acces-card.bleu:hover { border-color: rgba(52,152,219,0.4); }
+.acces-emoji { font-size: 2rem; margin-bottom: 0.6rem; display: block; }
+.acces-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; color: #fff; margin-bottom: 0.3rem; }
+.acces-sub { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); }
+
+/* ── FOOTER ── */
+.footer { margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer-text { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--muted); letter-spacing: 0.1em; }
+.footer-dot { color: var(--orange); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown { from { opacity:0; transform:translateY(-20px); } to { opacity:1; transform:none; } }
+@keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">BTSA AP 25-27 — Nantes Terre Atlantique</div>
+    <h1 class="hero-title">EPS —<br>S'engager dans un<br>mode de vie <span>actif</span></h1>
+    <p class="hero-subtitle">Deux projets complémentaires cette année : la musculation individuelle et le raid nature collectif. Un carnet de bord numérique pour suivre ta progression tout au long de l'année.</p>
+    <div class="hero-badges">
+      <span class="badge badge-orange">🏋️ Musculation</span>
+      <span class="badge badge-vert">🏃 Raid Nature</span>
+      <span class="badge badge-bleu">📱 Carnet numérique</span>
+      <span class="badge badge-bleu">Capacité C2.1</span>
+    </div>
+  </div>
+
+  <!-- CARNET DE BORD -->
+  <div class="section-label">Ton espace personnel</div>
+  <div class="carnet-banner">
+    <div class="carnet-icon">📊</div>
+    <div class="carnet-info">
+      <div class="carnet-title">Mon carnet de bord numérique</div>
+      <div class="carnet-desc">Accède à tes résultats de tests, tes fiches séance, ton objectif SMART, tes scores Raid et tes auto-évaluations. Saisis ton code AP-XX pour te connecter.</div>
+    </div>
+    <a href="#carnet" class="btn-carnet">Accéder à mon carnet →</a>
+  </div>
+
+  <!-- LES DEUX PROJETS -->
+  <div class="section-label">Les deux projets EPS</div>
+  <div class="projets-grid">
+    <div class="projet-card projet-muscu">
+      <span class="projet-emoji">🏋️</span>
+      <div class="projet-label">Projet individuel</div>
+      <div class="projet-name">Musculation</div>
+      <ul class="projet-items">
+        <li>Batterie de 16 tests physiques</li>
+        <li>4 formats d'entraînement au choix</li>
+        <li>Objectif SMART personnalisé</li>
+        <li>Suivi de séances tout au long de l'année</li>
+        <li>Auto-évaluation C2.1 AF1 à AF4</li>
+      </ul>
+    </div>
+    <div class="projet-card projet-raid">
+      <span class="projet-emoji">🏃</span>
+      <div class="projet-label">Projet collectif</div>
+      <div class="projet-name">Raid Nature</div>
+      <ul class="projet-items">
+        <li>Course d'orientation (CO)</li>
+        <li>Run & Bike (duathlon)</li>
+        <li>Laser Run</li>
+        <li>2 cycles dans l'année</li>
+        <li>Auto-évaluation C2.1 AF3 & AF4</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LES FORMULAIRES -->
+  <div class="section-label">Les 6 formulaires à remplir</div>
+  <div class="formulaires-grid">
+    <div class="form-card form-muscu">
+      <div class="form-num">1</div>
+      <div class="form-info">
+        <div class="form-name">Bilan initial Muscu</div>
+        <div class="form-when">Début de séquence</div>
+      </div>
+      <span class="form-freq">1 fois</span>
+    </div>
+    <div class="form-card form-muscu">
+      <div class="form-num">2</div>
+      <div class="form-info">
+        <div class="form-name">Objectif SMART Muscu</div>
+        <div class="form-when">Après le bilan initial</div>
+      </div>
+      <span class="form-freq">1 fois</span>
+    </div>
+    <div class="form-card form-muscu">
+      <div class="form-num">3</div>
+      <div class="form-info">
+        <div class="form-name">Fiche séance Muscu</div>
+        <div class="form-when">Après chaque séance</div>
+      </div>
+      <span class="form-freq">Régulier</span>
+    </div>
+    <div class="form-card form-muscu">
+      <div class="form-num">4</div>
+      <div class="form-info">
+        <div class="form-name">Bilan final Muscu</div>
+        <div class="form-when">Fin de séquence</div>
+      </div>
+      <span class="form-freq">1 fois</span>
+    </div>
+    <div class="form-card form-raid">
+      <div class="form-num">5</div>
+      <div class="form-info">
+        <div class="form-name">Fiche séance Raid</div>
+        <div class="form-when">Après chaque séance Raid</div>
+      </div>
+      <span class="form-freq">Régulier</span>
+    </div>
+    <div class="form-card form-raid">
+      <div class="form-num">6</div>
+      <div class="form-info">
+        <div class="form-name">Bilan Raid Nature</div>
+        <div class="form-when">Fin de chaque cycle</div>
+      </div>
+      <span class="form-freq">2 fois</span>
+    </div>
+  </div>
+
+  <!-- AGENDA -->
+  <div class="section-label">Agenda de l'année</div>
+  <div class="agenda-list">
+    <div class="agenda-item">
+      <div class="agenda-date">Septembre 2025</div>
+      <div class="agenda-titre">Passation des 16 tests physiques + Objectif SMART</div>
+      <span class="agenda-tag tag-orange">Muscu</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date">Sept → Décembre</div>
+      <div class="agenda-titre">Séquence Musculation Cycle 1 + Raid Cycle 1</div>
+      <span class="agenda-tag tag-bleu">Les deux</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date">Décembre 2025</div>
+      <div class="agenda-titre">Bilan Raid Nature — Cycle 1</div>
+      <span class="agenda-tag tag-vert">Raid</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date">Janvier → Mai</div>
+      <div class="agenda-titre">Séquence Musculation Cycle 2 + Raid Cycle 2</div>
+      <span class="agenda-tag tag-bleu">Les deux</span>
+    </div>
+    <div class="agenda-item">
+      <div class="agenda-date">Mai / Juin 2026</div>
+      <div class="agenda-titre">Bilan final Muscu + Bilan Raid Cycle 2</div>
+      <span class="agenda-tag tag-orange">Bilans finaux</span>
+    </div>
+  </div>
+
+  <!-- ACCÈS RAPIDE -->
+  <div class="section-label">Accès rapide</div>
+  <div class="acces-grid">
+    <a href="#formulaires" class="acces-card orange">
+      <span class="acces-emoji">📝</span>
+      <div class="acces-label">Formulaires</div>
+      <div class="acces-sub">Saisir mes données</div>
+    </a>
+    <a href="#carnet" class="acces-card vert">
+      <span class="acces-emoji">📊</span>
+      <div class="acces-label">Mon carnet</div>
+      <div class="acces-sub">Consulter ma progression</div>
+    </a>
+    <a href="#ressources" class="acces-card bleu">
+      <span class="acces-emoji">📚</span>
+      <div class="acces-label">Ressources</div>
+      <div class="acces-sub">Guides et barèmes</div>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-text">BTSA AP 25-27 <span class="footer-dot">•</span> EPS <span class="footer-dot">•</span> Nantes Terre Atlantique</div>
+    <div class="footer-text">Capacité C2.1 — S'engager dans un mode de vie actif et solidaire</div>
+  </div>
+
+</div>
+</body>
+</html>
